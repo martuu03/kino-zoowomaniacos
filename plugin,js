@@ -20,7 +20,6 @@ async function getCatalogItems(url) {
     const response = await fetch(url);
     const html = await response.text();
     
-    // Aquí el plugin lee la página web y extrae los elementos básicos
     const items = [];
     const regex = /<article[\s\S]*?<a href="([^"]+)"[\s\S]*?title="([^"]+)"[\s\S]*?(?:data-src|src)="([^"]+)"/g;
     let match;
@@ -42,14 +41,25 @@ async function getCatalogItems(url) {
 }
 
 async function details(id) {
-  // Función para obtener los enlaces de reproducción de la página interna
-  const response = await fetch(id);
-  const html = await response.text();
-  
-  // Aquí se buscaría el reproductor o enlace de video dentro de la página
   return {
     id: id,
     title: "Detalle",
     sources: [] 
   };
+}
+
+export async function resolve(id) {
+  // Esta función es la que pide Kino para resolver el enlace de reproducción
+  try {
+    const response = await fetch(id);
+    const html = await response.text();
+    
+    // Aquí puedes retornar una fuente de video básica o el enlace directo si se encuentra
+    return {
+      url: id,
+      format: "mp4"
+    };
+  } catch (error) {
+    throw new Error("No se pudo resolver el enlace de video");
+  }
 }
