@@ -1,13 +1,13 @@
 {
-  "id": "zoowomaniacos-plugin",
+  "id": "zoowomaniacos",
   "name": "Zoowomaniacos",
   "version": "1.0.0",
   "apiversion": 1,
-  "description": "Plugin para ver contenido de zoowomaniacos.org en Kino",
+  "description": "Plugin para ver contenido de zoowomaniacos.org",
   "entry": "plugin.js",
   "permissions": {
     "network": [
-      "https://zoowomaniacos.org"
+      "zoowomaniacos.org"
     ]
   }
 }
