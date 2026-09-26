@@ -1,7 +1,8 @@
 {
+{
   "id": "zoowomaniacos",
   "name": "Zoowomaniacos",
-  "version": "1.0.0",
+  "version": 1,
   "apiversion": 1,
   "entry": "plugin.js",
   "permissions": {
