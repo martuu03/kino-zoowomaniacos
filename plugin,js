@@ -1,6 +1,6 @@
-// Plugin básico para Kino - zoowomaniacos.org
+// Plugin para Kino - zoowomaniacos.org
 
-async function home() {
+export async function home() {
   return [
     {
       title: "Últimos agregados",
@@ -10,7 +10,7 @@ async function home() {
   ];
 }
 
-async function search(query) {
+export async function search(query) {
   const url = `https://zoowomaniacos.org/?s=${encodeURIComponent(query)}`;
   return await getCatalogItems(url);
 }
@@ -40,26 +40,13 @@ async function getCatalogItems(url) {
   }
 }
 
-async function details(id) {
-  return {
-    id: id,
-    title: "Detalle",
-    sources: [] 
-  };
-}
-
 export async function resolve(id) {
-  // Esta función es la que pide Kino para resolver el enlace de reproducción
   try {
-    const response = await fetch(id);
-    const html = await response.text();
-    
-    // Aquí puedes retornar una fuente de video básica o el enlace directo si se encuentra
     return {
       url: id,
       format: "mp4"
     };
   } catch (error) {
-    throw new Error("No se pudo resolver el enlace de video");
+    throw new Error("No se pudo resolver el enlace");
   }
 }
