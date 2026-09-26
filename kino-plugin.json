@@ -2,7 +2,7 @@
   "id": "zoowomaniacos-plugin",
   "name": "Zoowomaniacos",
   "version": "1.0.0",
-  "apiVersion": 1,
+  "apiversion": 1,
   "description": "Plugin para ver contenido de zoowomaniacos.org en Kino",
   "entry": "plugin.js",
   "permissions": {
