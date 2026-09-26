@@ -1,0 +1,55 @@
+// Plugin básico para Kino - zoowomaniacos.org
+
+async function home() {
+  return [
+    {
+      title: "Últimos agregados",
+      type: "row",
+      items: await getCatalogItems("https://zoowomaniacos.org/")
+    }
+  ];
+}
+
+async function search(query) {
+  const url = `https://zoowomaniacos.org/?s=${encodeURIComponent(query)}`;
+  return await getCatalogItems(url);
+}
+
+async function getCatalogItems(url) {
+  try {
+    const response = await fetch(url);
+    const html = await response.text();
+    
+    // Aquí el plugin lee la página web y extrae los elementos básicos
+    const items = [];
+    const regex = /<article[\s\S]*?<a href="([^"]+)"[\s\S]*?title="([^"]+)"[\s\S]*?(?:data-src|src)="([^"]+)"/g;
+    let match;
+
+    while ((match = regex.exec(html)) !== null) {
+      items.push({
+        id: match[1],
+        title: match[2],
+        poster: match[3],
+        type: "movie"
+      });
+    }
+
+    return items;
+  } catch (error) {
+    console.error("Error al obtener datos de zoowomaniacos:", error);
+    return [];
+  }
+}
+
+async function details(id) {
+  // Función para obtener los enlaces de reproducción de la página interna
+  const response = await fetch(id);
+  const html = await response.text();
+  
+  // Aquí se buscaría el reproductor o enlace de video dentro de la página
+  return {
+    id: id,
+    title: "Detalle",
+    sources: [] 
+  };
+}
