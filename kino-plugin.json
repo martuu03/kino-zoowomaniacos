@@ -1,13 +1,16 @@
 {
-{
   "id": "zoowomaniacos",
   "name": "Zoowomaniacos",
-  "version": 1,
-  "apiversion": 1,
+  "version": "1.0.0",
+  "apiVersion": 1,
   "entry": "plugin.js",
-  "permissions": {
-    "network": [
-      "https://zoowomaniacos.org"
-    ]
-  }
+  "description": "Plugin para ver contenido de zoowomaniacos.org",
+  "hosts": [
+    "zoowomaniacos.org",
+    "*.zoowomaniacos.org"
+  ],
+  "capabilities": [
+    "search",
+    "home"
+  ]
 }
